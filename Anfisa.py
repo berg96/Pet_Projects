@@ -20,3 +20,7 @@ print(f'Температура воздуха {temperature} градусов')
 friends = ['Сергей', 'Соня', 'Дима', 'Алина', 'Егор']
 
 print(friends)
+
+index = -2
+
+print('Привет, ' + friends[index] + ', я Анфиса!')
