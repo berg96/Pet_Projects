@@ -36,4 +36,6 @@ print(f'У тебя {count} друзей')
 
 for messages_count in range(6):
     if messages_count > 0:
-        print(f'Новых сообщений: {messages_count}')
+        print('Новых сообщений: ' + str(messages_count))
+    if messages_count == 0:
+        print('У вас нет сообщений')
