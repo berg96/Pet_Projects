@@ -39,3 +39,8 @@ for messages_count in range(6):
         print('Новых сообщений: ' + str(messages_count))
     if messages_count == 0:
         print('У вас нет сообщений')
+
+
+for current_hour in range(24):
+    if  current_hour < 12:
+        print('Доброе утро!')
