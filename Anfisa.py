@@ -9,3 +9,9 @@ print('Привет, я ' + name + ', твой ' + job + '!')
 count = 8
 message = 'У вас ' + str(count) + ' новых сообщений'
 print(message)
+
+temperature = -25
+weather = 'солнечно'
+
+print('Сегодня ' + weather)
+print(f'Температура воздуха {temperature} градусов')
