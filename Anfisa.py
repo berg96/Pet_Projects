@@ -34,11 +34,15 @@ count = len(friends)
 print(f'У тебя {count} друзей')
 
 
-for messages_count in range(6):
-    if messages_count > 0:
-        print('Новых сообщений: ' + str(messages_count))
+for messages_count in range(0, 21):
     if messages_count == 0:
-        print('У вас нет сообщений')
+        print('У вас нет новых сообщений')
+    elif messages_count == 1:
+        print('У вас 1 новое сообщение')
+    elif messages_count < 5:
+        print('У вас', messages_count, 'новых сообщения')
+    else:
+        print(f'У вас {messages_count} новых сообщений')
 
 
 for current_hour in range(24):
