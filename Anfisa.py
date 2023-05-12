@@ -28,3 +28,7 @@ print('Привет, ' + friends[index] + ', я Анфиса!')
 index = 2
 
 print(f'{friends[index]} живёт в Красноярске')
+
+count = len(friends)
+
+print(f'У тебя {count} друзей')
