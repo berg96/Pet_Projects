@@ -15,3 +15,8 @@ weather = 'солнечно'
 
 print('Сегодня ' + weather)
 print(f'Температура воздуха {temperature} градусов')
+
+
+friends = ['Сергей', 'Соня', 'Дима', 'Алина', 'Егор']
+
+print(friends)
