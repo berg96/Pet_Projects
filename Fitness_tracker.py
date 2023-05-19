@@ -12,5 +12,5 @@ minutes = hours * 60
 
 spent_calories = (0.035*weight + (mean_speed**2 / height) * 0.029*weight) * minutes
 
-output = f'{dist} {spent_calories}'  # Здесь подготовьте строку для вывода
+output = f'Сегодня вы прошли {dist:.2f} км и затратили {spent_calories:.2f} килокалорий. '  # Здесь подготовьте строку для вывода
 print(output)
