@@ -12,5 +12,13 @@ minutes = hours * 60
 
 spent_calories = (0.035*weight + (mean_speed**2 / height) * 0.029*weight) * minutes
 
-output = f'Сегодня вы прошли {dist:.2f} км и затратили {spent_calories:.2f} килокалорий. '  # Здесь подготовьте строку для вывода
+output = f'Сегодня вы прошли {dist:.2f} км и затратили {spent_calories:.2f} килокалорий.'  # Здесь подготовьте строку для вывода
+if dist >= 6.5:
+    output += ' Отличный результат! Цель достигнута.'
+elif dist >= 3.9:
+    output += ' Неплохо! День был продуктивным.'
+elif dist>= 2:
+    output += ' Маловато, но завтра наверстаем!'
+else:
+    output += ' Лежать тоже полезно. Главное — участие, а не победа!'
 print(output)
