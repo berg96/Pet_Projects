@@ -99,7 +99,7 @@ def accept_package(data):
         return 'Некорректный пакет'
 
     # Распакуйте полученные данные.
-    pack_time = dt.strptime(data[0],FORMAT) # Преобразуйте строку с временем в объект типа time.
+    pack_time = dt.datetime.strptime(data[0],FORMAT) # Преобразуйте строку с временем в объект типа time.
 
     if check_correct_time(pack_time): # Если функция проверки значения времени вернет False
         return 'Некорректное значение времени'
