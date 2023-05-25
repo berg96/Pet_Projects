@@ -80,12 +80,12 @@ def accept_package(data):
     # Распакуйте полученные данные.
     pack_time = time.strptime(data[0],FORMAT) # Преобразуйте строку с временем в объект типа time.
 
-    if check_correct_time: # Если функция проверки значения времени вернет False
+    if check_correct_time(pack_time): # Если функция проверки значения времени вернет False
         return 'Некорректное значение времени'
 
     day_steps = get_step_day(data[1]) # Запишите результат подсчёта пройденных шагов.
-    dist = get_distance(data[1]) # Запишите результат расчёта пройденной дистанции.
-    spent_calories = # Запишите результат расчёта сожжённых калорий.
+    dist = get_distance(day_steps) # Запишите результат расчёта пройденной дистанции.
+    spent_calories = get_spent_calories(dist,pack_time) # Запишите результат расчёта сожжённых калорий.
     achievement =  # Запишите выбранное мотивирующее сообщение.
     # Вызовите функцию show_message().
     # Добавьте новый элемент в словарь storage_data.
