@@ -29,7 +29,7 @@ def check_correct_time(time):
     # меньше или равно самому большому значению ключа в словаре,
     # функция вернет False.
     # Иначе - True 
-    if not storage_data and time <= max(storage_data):
+    if storage_data and time <= max(storage_data):
         return False
     else:
         return True
@@ -59,9 +59,10 @@ def get_spent_calories(dist, current_time):
     # Для расчётов вам потребуется значение времени; 
     # получите его из объекта current_time;
     # переведите часы и минуты в часы, в значение типа float.
-    hours = current_time.hours() + (current_time.minute() / 60)
-    minutes = current_time.hours() * 60 + current_time.minute()
-    return (K_1 * WEIGHT + (((dict / hours) ** 2) / HEIGHT) * K_2 * WEIGHT) * minutes
+    
+    hours = current_time.hour + (current_time.minute / 60)
+    minutes = current_time.hour * 60 + current_time.minute
+    return (K_1 * WEIGHT + (((dist / hours) ** 2) / HEIGHT) * K_2 * WEIGHT) * minutes
 
 def get_achievement(dist):
     """Получить поздравления за пройденную дистанцию."""
@@ -81,27 +82,27 @@ def get_achievement(dist):
 
 # Место для функции show_message.
 def show_message(time, steps, dist, spent_calories, achievement):
-    return f'''
+    print( f'''
     Время: {time}.
     Количество шагов за сегодня: {steps}.
     Дистанция составила {dist:.2f} км.
     Вы сожгли {spent_calories:.2f} ккал.
     {achievement}
     
-    '''
+    ''')
 
 
 
 def accept_package(data):
     """Обработать пакет данных."""
 
-    if check_correct_data(data): # Если функция проверки пакета вернет False
+    if not check_correct_data(data): # Если функция проверки пакета вернет False
         return 'Некорректный пакет'
 
     # Распакуйте полученные данные.
-    pack_time = dt.datetime.strptime(data[0],FORMAT) # Преобразуйте строку с временем в объект типа time.
+    pack_time = dt.datetime.strptime(data[0],FORMAT).time() # Преобразуйте строку с временем в объект типа time.
 
-    if check_correct_time(pack_time): # Если функция проверки значения времени вернет False
+    if not check_correct_time(pack_time): # Если функция проверки значения времени вернет False
         return 'Некорректное значение времени'
 
     day_steps = get_step_day(data[1]) # Запишите результат подсчёта пройденных шагов.
