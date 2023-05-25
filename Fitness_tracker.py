@@ -69,9 +69,27 @@ def get_achievement(dist):
     # вывода сообщений о достижении в зависимости
     # от пройденной дистанции.
     # Перенесите этот код сюда и замените print() на return.
+    if dist >= 6.5:
+        return 'Отличный результат! Цель достигнута.'
+    elif dist >= 3.9:
+        return 'Неплохо! День был продуктивным.'
+    elif dist >= 2:
+        return 'Маловато, но завтра наверстаем!'
+    else:
+        return 'Лежать тоже полезно. Главное — участие, а не победа!'
 
 
 # Место для функции show_message.
+def show_message(time, steps, dist, spent_calories, achievement):
+    return f'''
+    Время: {time}.
+    Количество шагов за сегодня: {steps}.
+    Дистанция составила {dist:.2f} км.
+    Вы сожгли {spent_calories:.2f} ккал.
+    {achievement}
+    
+    '''
+
 
 
 def accept_package(data):
@@ -91,8 +109,11 @@ def accept_package(data):
     spent_calories = get_spent_calories(dist,pack_time) # Запишите результат расчёта сожжённых калорий.
     achievement = get_achievement(dist) # Запишите выбранное мотивирующее сообщение.
     # Вызовите функцию show_message().
+    show_message(pack_time, day_steps, dist, spent_calories, achievement)
     # Добавьте новый элемент в словарь storage_data.
+    storage_data[pack_time] = data[1]
     # Верните словарь storage_data.
+    return storage_data
 
 
 # Данные для самопроверки.Не удаляйте их.
