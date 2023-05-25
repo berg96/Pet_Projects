@@ -1,5 +1,5 @@
 # Импортируйте необходимые модули
-import time
+import datetime as dt
 
 FORMAT = '%H:%M:%S'# Запишите формат полученного времени.
 WEIGHT = 75  # Вес.
@@ -59,6 +59,9 @@ def get_spent_calories(dist, current_time):
     # Для расчётов вам потребуется значение времени; 
     # получите его из объекта current_time;
     # переведите часы и минуты в часы, в значение типа float.
+    hours = current_time.hours() + (current_time.minute() / 60)
+    minutes = current_time.hours() * 60 + current_time.minute()
+    return (K_1 * WEIGHT + (((dict / hours) ** 2) / HEIGHT) * K_2 * WEIGHT) * minutes
 
 def get_achievement(dist):
     """Получить поздравления за пройденную дистанцию."""
@@ -78,7 +81,7 @@ def accept_package(data):
         return 'Некорректный пакет'
 
     # Распакуйте полученные данные.
-    pack_time = time.strptime(data[0],FORMAT) # Преобразуйте строку с временем в объект типа time.
+    pack_time = dt.strptime(data[0],FORMAT) # Преобразуйте строку с временем в объект типа time.
 
     if check_correct_time(pack_time): # Если функция проверки значения времени вернет False
         return 'Некорректное значение времени'
@@ -86,7 +89,7 @@ def accept_package(data):
     day_steps = get_step_day(data[1]) # Запишите результат подсчёта пройденных шагов.
     dist = get_distance(day_steps) # Запишите результат расчёта пройденной дистанции.
     spent_calories = get_spent_calories(dist,pack_time) # Запишите результат расчёта сожжённых калорий.
-    achievement =  # Запишите выбранное мотивирующее сообщение.
+    achievement = get_achievement(dist) # Запишите выбранное мотивирующее сообщение.
     # Вызовите функцию show_message().
     # Добавьте новый элемент в словарь storage_data.
     # Верните словарь storage_data.
