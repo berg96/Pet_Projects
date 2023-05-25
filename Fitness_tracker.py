@@ -15,6 +15,10 @@ def check_correct_data(data):
     # Если длина пакета отлична от 2
     # или один из элементов пакета имеет пустое значение -
     # функция вернет False, иначе - True.
+    if len(data) < 2 or len(data) > 2 or data[0] == None or data[1] == None:
+        return False
+    else:
+        return True
 
 
 def check_correct_time(time):
@@ -61,7 +65,7 @@ def get_achievement(dist):
 def accept_package(data):
     """Обработать пакет данных."""
 
-    if  # Если функция проверки пакета вернет False
+    if check_correct_data(data) # Если функция проверки пакета вернет False
         return 'Некорректный пакет'
 
     # Распакуйте полученные данные.
