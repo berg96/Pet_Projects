@@ -16,10 +16,9 @@ def check_correct_data(data):
     # Если длина пакета отлична от 2
     # или один из элементов пакета имеет пустое значение -
     # функция вернет False, иначе - True.
-    if len(data) < 2 or len(data) > 2 or data[0] == None or data[1] == None:
+    if len(data) != 2 or None in data:
         return False
-    else:
-        return True
+    return True
 
 
 def check_correct_time(time):
@@ -31,8 +30,7 @@ def check_correct_time(time):
     # Иначе - True 
     if storage_data and time <= max(storage_data):
         return False
-    else:
-        return True
+    return True
 
 
 def get_step_day(steps):
@@ -40,10 +38,8 @@ def get_step_day(steps):
     # Посчитайте все шаги, записанные в словарь storage_data,
     # прибавьте к ним значение из последнего пакета
     # и верните  эту сумму.
-    sum = 0
-    for step in storage_data.values():
-        sum += step
-    return sum + steps
+    day_steps = sum(storage_data.values())
+    return day_steps + steps
 
 def get_distance(steps):
     """Получить дистанцию пройденного пути в км."""
@@ -60,9 +56,8 @@ def get_spent_calories(dist, current_time):
     # получите его из объекта current_time;
     # переведите часы и минуты в часы, в значение типа float.
     
-    hours = current_time.hour + (current_time.minute / 60)
-    minutes = current_time.hour * 60 + current_time.minute
-    return (K_1 * WEIGHT + (((dist / hours) ** 2) / HEIGHT) * K_2 * WEIGHT) * minutes
+    time = current_time.hour + (current_time.minute / 60)
+    return (K_1 * WEIGHT + (((dist / time) ** 2) / HEIGHT) * K_2 * WEIGHT) * time * 60
 
 def get_achievement(dist):
     """Получить поздравления за пройденную дистанцию."""
@@ -83,13 +78,12 @@ def get_achievement(dist):
 # Место для функции show_message.
 def show_message(time, steps, dist, spent_calories, achievement):
     print( f'''
-    Время: {time}.
-    Количество шагов за сегодня: {steps}.
-    Дистанция составила {dist:.2f} км.
-    Вы сожгли {spent_calories:.2f} ккал.
-    {achievement}
-    
-    ''')
+Время: {time}.
+Количество шагов за сегодня: {steps}.
+Дистанция составила {dist:.2f} км.
+Вы сожгли {spent_calories:.2f} ккал.
+{achievement}
+''')
 
 
 
