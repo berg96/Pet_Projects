@@ -1,6 +1,7 @@
 # Импортируйте необходимые модули
+import time
 
-FORMAT = # Запишите формат полученного времени.
+FORMAT = '%H:%M:%S'# Запишите формат полученного времени.
 WEIGHT = 75  # Вес.
 HEIGHT = 175  # Рост.
 K_1 = 0.035  # Коэффициент для подсчета калорий.
@@ -28,6 +29,10 @@ def check_correct_time(time):
     # меньше или равно самому большому значению ключа в словаре,
     # функция вернет False.
     # Иначе - True 
+    if not storage_data and time <= max(storage_data):
+        return False
+    else:
+        return True
 
 
 def get_step_day(steps):
@@ -65,13 +70,13 @@ def get_achievement(dist):
 def accept_package(data):
     """Обработать пакет данных."""
 
-    if check_correct_data(data) # Если функция проверки пакета вернет False
+    if check_correct_data(data): # Если функция проверки пакета вернет False
         return 'Некорректный пакет'
 
     # Распакуйте полученные данные.
-    pack_time =  # Преобразуйте строку с временем в объект типа time.
+    pack_time = time.strptime(data[0],FORMAT) # Преобразуйте строку с временем в объект типа time.
 
-    if  # Если функция проверки значения времени вернет False
+    if check_correct_time: # Если функция проверки значения времени вернет False
         return 'Некорректное значение времени'
 
     day_steps =  # Запишите результат подсчёта пройденных шагов.
